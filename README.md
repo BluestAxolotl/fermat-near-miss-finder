@@ -96,7 +96,7 @@ Enter an integer for k such that 10 <= x, y <= k: 50
 Successively smaller relative misses for n=3 and k=50:
 x       y       z       Actual Miss     Relative Miss
 
-10      10      12      152             0.076
+10      10      13      197             0.0985
 ...
 ```
 

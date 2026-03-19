@@ -116,13 +116,6 @@ The program uses a brute-force search algorithm:
 - For larger values of *k* and *n*, computation time increases significantly
 - The search starts at *x*, *y* = 10 to focus on more interesting near misses
 
-## Author Information
-
-- **Programmer**: Alexis Granados
-- **Email**: alexisgranados@lewisu.edu
-- **Course**: CPSC44000-LT1
-- **Date**: February 17, 2025
-
 ## License
 
 This is an educational project developed for coursework.

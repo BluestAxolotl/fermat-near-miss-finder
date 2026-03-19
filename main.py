@@ -1,30 +1,27 @@
-# Program title: Fermat's Last Theorem Near Miss Finder
-# Program File: main.py
-# External Files: None
-# External Files Created: None
-# Programmer: Alexis Granados
-# Email Address: alexisgranados@lewisu.edu
-# Course and Section Numbers: CPSC44000-LT1
-# Date of Submission: 02/17/2025
-# Description: This program finds near misses to Fermat's Last Theorem for user-inputted values of n and k such that 
-# 2 < n < 12 and 10 <= k. It prints  each successive new smallest relative miss for integers x and y less than or equal 
-# to k, where x^n + y^n is close to z^n.
-# Resource used: https://www.w3schools.com/python/python_reference.asp
-
-
 def main():
 
     print("Welcome to Fermat's Last Theorem Near Miss Finder!")
     print("\nThe finder will find print each successive new smallest relative miss for the n and k you provide\n"
           "such that x^n + y^n is close to z^n for some integers x and y <= k.\n")
 
-    # Get user inputs for n and k, ensuring they meet the specified criteria
-    userInputs = getUserInputs()
-    
-    print(f"\nSuccessively smaller relative misses for n={userInputs[0]} and k={userInputs[1]}:")
-    print("x\ty\tz\tActual Miss\tRelative Miss\n")
+    # Loops while user does not enter sentinel value of -1
+    while True:
+        # Get user inputs for n and k, ensuring they meet the specified criteria
+        userInputs = getUserInputs()
 
-    findFermatNearMisses(userInputs[0], userInputs[1])
+        if userInputs[0] == -1:
+            break
+
+        print(f"\nSuccessively smaller relative misses for n={userInputs[0]} and k={userInputs[1]}:")
+        print("x\ty\tz\tActual Miss\tRelative Miss\n")
+
+        findFermatNearMisses(userInputs[0], userInputs[1])
+
+        # Tell user that near miss results have ended and to press Enter to continue
+        input("\nEnd of results. Press Enter to continue.")
+    
+    # Print a goodbye message when the user chooses to exit the program
+    print("Exiting program.")
 
 # Function to print the details of a near miss, including the actual miss and relative miss, and pause after each new smallest relative miss is found
 def printNearMiss(x, y, z, actualMiss, relativeMiss):
@@ -80,14 +77,18 @@ def getUserInputs():
 
     # Get n from the user, ensuring it's an integer between 3 and 11
     while True:
-        # Prompt the user for n
-        userInput = input("Enter an integer for n (where 2 < n < 12): ")
+        # Prompt the user for n or to enter -1 to exit the program
+        userInput = input("Enter an integer for n (where 2 < n < 12) or enter -1 to exit program: ")
         try:
             # Attempt to convert the user-inputted n to an integer and check if it meets the criteria
             n = int(userInput)
             if 2 < n < 12:
                 userInputs.append(n)
                 break
+            # sentinel value of -1 being returned to indicate the user wants to exit the program
+            elif n == -1:
+                userInputs.append(-1)
+                return userInputs
             else:
                 print("Please enter an integer between 3 and 11.")
         except ValueError:
@@ -113,6 +114,5 @@ def getUserInputs():
             print("The value of k is too large and causes memory issues. Please enter a smaller integer.")
     return userInputs
 
-# The main function is called to start the program when this script is executed
 if __name__ == "__main__":
     main()
